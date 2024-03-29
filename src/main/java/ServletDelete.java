@@ -32,7 +32,7 @@ public class ServletDelete extends HttpServlet {
                     if (input == pair.getKey()) {
                         model.delete(input);
                         pw.println("{\"message:\" \"Пользователь успешно удален\"}");
-                        pw.print(gson.toJson(model.getFromList()));
+                        pw.print(gson.toJson(model.getFromList()));  // Добавлено для наглядности, что удаляются
                         return;
                     }
                 }  pw.print( "{\"message:\" \"No such user with ID:" + request.getParameter("id") + "\"}");

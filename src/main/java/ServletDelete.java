@@ -23,13 +23,13 @@ public class ServletDelete extends HttpServlet {
         try {
             int input = Integer.parseInt(request.getParameter("id"));
             if (input > model.getFromList().size()) {
-                pw.print("No such user with ID: " + request.getParameter("id"));
+                pw.print( "{\"message:\" \"No such user with ID:" + request.getParameter("id") + "\"}");
             } else if (input <= 0) {
-                pw.print("ID должно быть положительным числом");
+                pw.print("{\"message:\" \"ID должно быть положительным числом\"}");
             } else {
                 model.delete(input);
-                pw.println("Пользователь успешно удален");
-                pw.print(gson.toJson(model.getFromList()));
+                pw.println("{\"message:\" \"Пользователь успешно удален\"}");
+//                pw.print(gson.toJson(model.getFromList()));
             }
         }
         catch (Exception e) {

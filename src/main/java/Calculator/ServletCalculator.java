@@ -1,6 +1,6 @@
 package Calculator;
 
-import Calculator.Calculator;
+import Calculator.logic.Calculator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -38,14 +38,14 @@ public class ServletCalculator extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        double x = jobj.get("a").getAsDouble();
-        double y = jobj.get("b").getAsDouble();
+        int x = jobj.get("a").getAsInt();
+        int y = jobj.get("b").getAsInt();
         String operator = jobj.get("math").getAsString();
         Calculator calculator = new Calculator(x, y, operator);
         try{
             double result = calculator.getResult();
             pw.print("{\"result\" : \"" + result + "\"}");
-        } catch (ZeroDivisionException e) {
+        } catch (Calculator.ZeroDivisionException e) {
             pw.print("{\"message:\" \"Деление на 0 запрещено\"}");
         }
     }

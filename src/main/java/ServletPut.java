@@ -43,9 +43,9 @@ public class ServletPut extends HttpServlet {
         PrintWriter pw = response.getWriter();
         int id = Integer.parseInt(request.getParameter("id"));
         if (id > model.getFromList().size()) {
-            pw.print("No such user with ID" + request.getParameter("id"));
+            pw.print("{\"message:\" \"No such user with ID:" + request.getParameter("id") + "\"}");
         } else if (id <= 0) {
-            pw.print("ID должно быть положительным числом");
+            pw.print("{\"message:\" \"ID должно быть положительным числом\"}");
         } else {
             JsonObject jobj = gson.fromJson(String.valueOf(jb), JsonObject.class);
 
@@ -58,7 +58,7 @@ public class ServletPut extends HttpServlet {
             User user = new User(name, surname, salary);
             model.put(id, user);
 
-            pw.print("Пользователь успешно изменен");
+            pw.print("{\"message:\" \"Пользователь успешно изменен\"}");
 
             pw.print(gson.toJson(model.getFromList()));
         }

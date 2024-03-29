@@ -36,6 +36,14 @@ public class Calculator {
         this.operator = operator;
     }
 
+//    public void setOperator(String operator) throws NoSuchOperatorException {
+//        if (operator.equals("+")||operator.equals("-")||operator.equals("/")||operator.equals("*")) {
+//            this.operator = operator;
+//        } else {
+//            throw new NoSuchOperatorException(operator);
+//        }
+//    }
+
     public void setResult(double result) {
         this.result = result;
     }
@@ -64,7 +72,7 @@ public class Calculator {
     }
 
 
-    public double getResult() throws ZeroDivisionException {
+    public double getResult() throws ZeroDivisionException, NoSuchOperatorException {
         switch (this.operator) {
             case "+":
                 result = getSum(this.x, this.y);
@@ -82,6 +90,9 @@ public class Calculator {
                     result = getDivision(this.x, this.y);
                 }
                 break;
+            default:
+                throw new NoSuchOperatorException();
+
         }
         return result;
     }

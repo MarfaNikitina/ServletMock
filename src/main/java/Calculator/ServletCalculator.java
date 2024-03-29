@@ -1,6 +1,7 @@
 package Calculator;
 
 import Calculator.logic.Calculator;
+import Calculator.logic.NoSuchOperatorException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -47,6 +48,8 @@ public class ServletCalculator extends HttpServlet {
             pw.print("{\"result\" : \"" + result + "\"}");
         } catch (Calculator.ZeroDivisionException e) {
             pw.print("{\"message:\" \"Деление на 0 запрещено\"}");
+        } catch (NoSuchOperatorException e) {
+            pw.print("{\"message:\" \"Оператор не существует\"}");
         }
     }
 }

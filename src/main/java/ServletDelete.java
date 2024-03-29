@@ -1,6 +1,8 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import logic.Model;
+import logic.User;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 @WebServlet(urlPatterns = "/delete")
 public class ServletDelete extends HttpServlet {
@@ -22,15 +25,18 @@ public class ServletDelete extends HttpServlet {
         PrintWriter pw = response.getWriter();
         try {
             int input = Integer.parseInt(request.getParameter("id"));
-            if (input > model.getFromList().size()) {
-                pw.print( "{\"message:\" \"No such user with ID:" + request.getParameter("id") + "\"}");
-            } else if (input <= 0) {
+            if (input <= 0) {
                 pw.print("{\"message:\" \"ID должно быть положительным числом\"}");
             } else {
-                model.delete(input);
-                pw.println("{\"message:\" \"Пользователь успешно удален\"}");
-//                pw.print(gson.toJson(model.getFromList()));
+                for (Map.Entry<Integer, User> pair: model.getFromList().entrySet()){
+                    if (input == pair.getKey()) {
+                        model.delete(input);
+                        pw.println("{\"message:\" \"Пользователь успешно удален\"}");
+                        return;
+                    }
+                }  pw.print( "{\"message:\" \"No such user with ID:" + request.getParameter("id") + "\"}");
             }
+
         }
         catch (Exception e) {
             System.out.println("Error");

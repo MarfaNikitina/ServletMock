@@ -1,5 +1,3 @@
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import logic.Model;
 import logic.User;
 
@@ -12,7 +10,7 @@ import java.io.PrintWriter;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-@WebServlet(urlPatterns = "/addView")
+@WebServlet(urlPatterns = "/addUser")
 public class ServletAddView extends HttpServlet {
 
     private AtomicInteger counter = new AtomicInteger(4);

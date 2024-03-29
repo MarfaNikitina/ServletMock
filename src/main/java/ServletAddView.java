@@ -12,12 +12,11 @@ import java.io.PrintWriter;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-@WebServlet(urlPatterns = "/addUser.html")
+@WebServlet(urlPatterns = "/addView")
 public class ServletAddView extends HttpServlet {
 
     private AtomicInteger counter = new AtomicInteger(4);
     Model model = Model.getInstance();
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");

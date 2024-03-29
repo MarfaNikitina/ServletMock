@@ -14,7 +14,7 @@ All:
     Model model = Model.getInstance();
     out.print(model.getFromList().size());
 %>
-<form method="get" action="get">
+<form method="get" action="getView">
     <label>ID:
     <input type="text" name="id">
     <br/></label>
